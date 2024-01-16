@@ -31,7 +31,7 @@ export default function SignIn() {
       if(res.status!=200){
         dispatch(signInFailure(data))
       }else{
-        navigate('/')
+        navigate('/');
         dispatch(signInSuccess(data))
       }
 
