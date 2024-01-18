@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+import path from 'path';
 
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
@@ -8,8 +9,15 @@ import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
+const __dirname= path.resolve();
+
 const app= express();
 
+app.use(express.static(path.join(__dirname,'/client/dist')))
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+})
 //username nazmussaqib
 //password nazmussaqib2003
 mongoose
